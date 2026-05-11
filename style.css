@@ -666,7 +666,7 @@ ul {
 }
 .marquee-content {
     display: flex;
-    animation: marquee-scroll 40s linear infinite;
+    animation: marquee-scroll 15s linear infinite;
     gap: 10px;
 }
 .marquee-content img {
