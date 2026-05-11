@@ -669,6 +669,12 @@ ul {
     animation: marquee-scroll 15s linear infinite;
     gap: 10px;
 }
+
+@media (max-width: 768px) {
+    .marquee-content {
+        animation-duration: 8s; /* Faster speed for mobile to match PC feel */
+    }
+}
 .marquee-content img {
     height: 250px;
     width: auto;
