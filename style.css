@@ -445,14 +445,14 @@ ul {
 .news-content {
     display: flex;
     white-space: nowrap;
-    animation: ticker 30s linear infinite;
+    animation: ticker-animation 80s linear infinite; /* Much slower */
 }
 .news-item {
     padding: 0 50px;
 }
-@keyframes ticker {
+@keyframes ticker-animation {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Assuming duplicated content */
+    100% { transform: translateX(-50%); }
 }
 
 /* Concept Section */
@@ -666,13 +666,13 @@ ul {
 }
 .gallery .marquee-content {
     display: flex;
-    animation: marquee-scroll 15s linear infinite;
+    animation: gallery-animation 5s linear infinite; /* Ultra fast */
     gap: 10px;
 }
 
 @media (max-width: 768px) {
     .gallery .marquee-content {
-        animation-duration: 8s; /* Faster speed for mobile only in gallery */
+        animation-duration: 3s; /* Extreme speed for mobile */
     }
 }
 .marquee-content img {
@@ -681,7 +681,7 @@ ul {
     border-radius: var(--image-radius);
     object-fit: cover;
 }
-@keyframes marquee-scroll {
+@keyframes gallery-animation {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); } 
 }
