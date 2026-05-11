@@ -664,15 +664,15 @@ ul {
     overflow: hidden;
     display: flex;
 }
-.marquee-content {
+.gallery .marquee-content {
     display: flex;
     animation: marquee-scroll 15s linear infinite;
     gap: 10px;
 }
 
 @media (max-width: 768px) {
-    .marquee-content {
-        animation-duration: 8s; /* Faster speed for mobile to match PC feel */
+    .gallery .marquee-content {
+        animation-duration: 8s; /* Faster speed for mobile only in gallery */
     }
 }
 .marquee-content img {
