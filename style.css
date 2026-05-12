@@ -680,18 +680,35 @@ ul {
     overflow: hidden;
 }
 
+/* 手動スクロールと自動制御の準備 */
 .marquee {
     width: 100%;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     position: relative;
     display: flex;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+}
+
+.marquee:active {
+    cursor: grabbing;
+}
+
+/* スクロールバーを非表示にする（デザイン重視） */
+.marquee::-webkit-scrollbar {
+    display: none;
+}
+.marquee {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .marquee-content {
     display: flex;
     flex-wrap: nowrap;
     flex-shrink: 0;
-    animation: gallery-animation 25s linear infinite;
+    /* アニメーションはJSで制御するためCSSからは削除 */
 }
 
 .gallery-img {
@@ -717,8 +734,8 @@ ul {
 }
 
 @media (max-width: 768px) {
-    .marquee-content {
-        animation-duration: 30s;
+    .gallery-img {
+        height: 180px;
     }
 }
 

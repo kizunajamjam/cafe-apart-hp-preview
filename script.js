@@ -660,4 +660,57 @@ document.addEventListener('DOMContentLoaded', () => {
         // Also observe individual items as they are added? 
         // Better: periodic check or after renderMenuItems
     }
+
+    /* =========================================
+       12. Infinite Scroll Marquee with Manual Interaction
+       ========================================= */
+    const initMarqueeScroll = () => {
+        const marquee = document.querySelector('.marquee');
+        const content = marquee?.querySelector('.marquee-content');
+        if (!marquee || !content) return;
+
+        let scrollSpeed = 1.0; // 自動スクロールの速さ
+        let isInteracting = false;
+        let animationId = null;
+
+        const step = () => {
+            if (!isInteracting) {
+                marquee.scrollLeft += scrollSpeed;
+                
+                // 無限ループの判定（1つ目のコンテナ分進んだらリセット）
+                if (marquee.scrollLeft >= content.offsetWidth) {
+                    marquee.scrollLeft = 0;
+                }
+            }
+            animationId = requestAnimationFrame(step);
+        };
+
+        // インタラクション（マウス、タッチ）の検知
+        const stopAuto = () => { isInteracting = true; };
+        const startAuto = () => { 
+            isInteracting = false; 
+            // 手動スクロール後も、現在の位置から無限ループを維持
+            if (marquee.scrollLeft >= content.offsetWidth) {
+                marquee.scrollLeft -= content.offsetWidth;
+            } else if (marquee.scrollLeft <= 0) {
+                marquee.scrollLeft += content.offsetWidth;
+            }
+        };
+
+        marquee.addEventListener('mousedown', stopAuto);
+        marquee.addEventListener('touchstart', stopAuto, { passive: true });
+        window.addEventListener('mouseup', startAuto);
+        window.addEventListener('touchend', startAuto);
+        
+        // ホイール操作時も一時停止
+        marquee.addEventListener('wheel', () => {
+            stopAuto();
+            clearTimeout(marquee.wheelTimeout);
+            marquee.wheelTimeout = setTimeout(startAuto, 1000);
+        }, { passive: true });
+
+        animationId = requestAnimationFrame(step);
+    };
+
+    initMarqueeScroll();
 });
