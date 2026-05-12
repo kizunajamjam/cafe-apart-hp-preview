@@ -666,13 +666,13 @@ ul {
 }
 .gallery .marquee-content {
     display: flex;
-    animation: gallery-animation 5s linear infinite; /* Ultra fast */
+    animation: gallery-animation 10s linear infinite; /* More relaxing speed */
     gap: 10px;
 }
 
 @media (max-width: 768px) {
     .gallery .marquee-content {
-        animation-duration: 3s; /* Extreme speed for mobile */
+        animation-duration: 8s; /* Calm speed for mobile */
     }
 }
 .marquee-content img {
