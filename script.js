@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
             position: absolute; top: 20px; right: 30px; color: #fff;
             font-size: 50px; cursor: pointer; font-weight: 200; line-height: 1;
         }
-        .img-wrapper img { cursor: zoom-in; }
+        .img-wrapper img, .gallery-img { cursor: zoom-in; }
     `;
     document.head.appendChild(style);
 
@@ -589,7 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function attachDynamicEvents() {
         // Attach Lightbox logic to new images and thumbnails
-        const triggers = document.querySelectorAll('.img-wrapper img, .clickable-thumb');
+        const triggers = document.querySelectorAll('.img-wrapper img, .clickable-thumb, .gallery-img');
         triggers.forEach(el => {
             el.addEventListener('click', (e) => {
                 e.stopPropagation();

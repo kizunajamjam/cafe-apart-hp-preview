@@ -675,35 +675,50 @@ ul {
 
 /* Infinite Gallery Marquee */
 .gallery {
-    padding-bottom: 0;
     padding-top: 40px;
+    padding-bottom: 0;
     overflow: hidden;
 }
+
 .marquee {
     width: 100%;
     overflow: hidden;
+    position: relative;
     display: flex;
 }
-.gallery .marquee-content {
+
+.marquee-content {
     display: flex;
-    animation: gallery-animation 10s linear infinite; /* More relaxing speed */
-    gap: 10px;
+    flex-wrap: nowrap;
+    animation: gallery-animation 10s linear infinite;
+}
+
+.gallery-img {
+    flex-shrink: 0;
+    height: 250px;
+    width: auto;
+    margin-right: 20px;
+    border-radius: var(--image-radius);
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: zoom-in;
+}
+
+.gallery-img:hover {
+    transform: scale(1.05) translateY(-5px);
+    filter: brightness(1.1);
+    z-index: 10;
+}
+
+@keyframes gallery-animation {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 @media (max-width: 768px) {
-    .gallery .marquee-content {
-        animation-duration: 8s; /* Calm speed for mobile */
+    .marquee-content {
+        animation-duration: 10s;
     }
-}
-.marquee-content img {
-    height: 250px;
-    width: auto;
-    border-radius: var(--image-radius);
-    object-fit: cover;
-}
-@keyframes gallery-animation {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } 
 }
 
 /* Access Section */
