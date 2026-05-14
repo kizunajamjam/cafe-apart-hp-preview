@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kizunajamjam.github.io/cafe-apart-hp/sitemap.xml
